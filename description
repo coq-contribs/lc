@@ -1,0 +1,18 @@
+Name: lc
+Title: Modules over monads and lambda-calculi
+Author: André Hirschowitz
+Institution: Université de Nice
+Homepage: http://math.unice.fr/~ah/
+Author: Marco Maggesi
+Institution: Università di Firenze
+Homepage: http://www.math.unifi.it/~maggesi/
+Date: 2006-01-12
+Description: We define a notion of module over a monad and use it to
+             propose a new definition (or semantics) for abstract
+             syntax (with binding constructions).  Using our notion of
+             module, we build a category of `exponential' monads,
+             which can be understood as the category of
+             lambda-calculi, and prove that it has an initial object
+             (the pure untyped lambda-calculus).
+Version: cvs 2005-01-12
+Keywords: module monad category lambda-calculus higher-order-syntax
