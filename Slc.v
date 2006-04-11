@@ -24,9 +24,7 @@ Fixpoint fct (X Y : Set) (f : X -> Y)
   | app x y => app (x //- f) (y //- f)
   | abs x => abs (x //- (optmap f))
   end
-where "x //- f" := (@fct _ _ f x) : lc_scope.
-
-Open Scope lc_scope.
+where "x //- f" := (@fct _ _ f x).
 
 Lemma fct_fct :
   forall (X Y Z : Set) (f : X -> Y) (g : Y -> Z) (x : term X) ,
@@ -85,7 +83,7 @@ Fixpoint subst (X Y : Set) (f : X -> term Y)
   | app x y => app (x //= f) (y //= f)
   | abs x => abs (x //= comm f)
   end
-where "x //= f" := (@subst _ _ f x) : lc_scope.
+where "x //= f" := (@subst _ _ f x).
 
 Ltac slc :=
   intros;
@@ -360,3 +358,6 @@ Lemma lcr_app1 : forall X (x y : term X),
 Proof.
 intros. do 2 rewrite app1_app. unfold shift. slc.
 Qed.
+
+Notation "x //- f" := (@fct _ _ f x) : lc_scope.
+Notation "x //= f" := (@subst _ _ f x) : lc_scope.
