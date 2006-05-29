@@ -129,7 +129,7 @@ rewrite iota_fix_app1.
 rewrite exp_eta. reflexivity.
 Qed.
 
-Lemma iota_fix_beta : forall X (x : term (option X)) y,
+Lemma iota_fix_beta : forall (X:Set) (x : term (option X)) y,
   iota_fix (app (abs x) y) =
   iota_fix (x //= default (fun a => var a) y).
 Proof.
