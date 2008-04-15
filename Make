@@ -1,0 +1,8 @@
+-R . lc
+Derived_Mod.v
+Lc.v
+Misc.v
+Mod.v
+Monad.v
+Quot.v
+Slc.v
