@@ -15,4 +15,5 @@ Description: We define a notion of module over a monad and use it to
              lambda-calculi, and prove that it has an initial object
              (the pure untyped lambda-calculus).
 Version: cvs 2005-01-12
-Keywords: module monad category lambda-calculus higher-order-syntax
+Keywords: modules, monads, category theory, lambda-calculus, higher-order-syntax
+Category: Computer Science/Lambda Calculi
