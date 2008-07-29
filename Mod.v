@@ -13,9 +13,9 @@ Record Mod (U : Monad) : Type := {
     mod_carrier Y;
   mbind_mbind : forall (X Y Z : Set)
     (f : X -> U Y) (g : Y -> U Z) (x : mod_carrier X),
-    mbind Y Z g (mbind X Y f x) = mbind X Z (fun u => f u >>= g) x;
+    mbind Z g (mbind Y f x) = mbind Z (fun u => f u >>= g) x;
   unit_mbind : forall (X : Set) (x : mod_carrier X),
-    mbind X X (@unit U X) x = x
+    mbind X (@unit U X) x = x
 }.
 
 Notation "x >>>= f" := (@mbind _ _ _ _ f x).

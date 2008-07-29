@@ -3,9 +3,9 @@
 
 (** * Monads *)
 
-Set Implicit Arguments.
-
 Require Export Misc.
+
+Set Implicit Arguments.
 
 Record Monad : Type := {
   monad_carrier :> Set -> Set;
@@ -16,12 +16,12 @@ Record Monad : Type := {
     forall (X Y Z : Set)
     (f : X -> monad_carrier Y) (g : Y -> monad_carrier Z)
     (x : monad_carrier X),
-    bind Y Z g (bind X Y f x) =
-      bind X Z (fun u => bind Y Z g (f u)) x;
+    bind g (bind f x) =
+    bind (fun u => bind g (f u)) x;
   bind_unit : forall (X Y : Set) (f : X -> monad_carrier Y) (x : X),
-    bind X Y f (unit X x) = f x;
+    bind f (unit x) = f x;
   unit_bind : forall (X : Set) (x : monad_carrier X),
-    bind X X (unit X) x = x
+    bind (@unit X) x = x
 }.
 
 Notation "x >>= f" := (@bind _ _ _ f x).
