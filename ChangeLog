@@ -1,0 +1,9 @@
+2008-09-09 :
+	- Removed the need of Proof Irrelevance.
+	- Changed the axiomatization of quotient types.  In
+	  particular, the axiom of choice has been replaced with the
+	  existence of a section.
+	- Removed dead code.
+
+2006-01-12 :
+	First public version

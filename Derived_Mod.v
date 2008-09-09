@@ -5,21 +5,23 @@
 
 Set Implicit Arguments.
 
+Require Export Misc.
 Require Export Mod.
 
 Section Derived_Mod.
+
+Implicit Type X Y Z : Set.
 
 Variable (P : Monad) (M : Mod P).
 
 Section Def.
 
-Let T (X : Set) : Set := M (option X).
+Let T : Set -> Set := fun X => M (option X).
 
-Let bT (X Y : Set) (f : X -> P Y) (x : T X) : T Y :=
+Let bT X Y (f : X -> P Y) (x : T X) : T Y :=
   x >>>= (default (fun u => (f u) >>- @Some Y) (unit P None)).
 
-Remark bT_bT : forall (X Y Z : Set)
-  (f : X -> P Y) (g : Y -> P Z) (x : T X),
+Remark bT_bT : forall X Y Z (f : X -> P Y) (g : Y -> P Z) (x : T X),
   bT Z g (bT Y f x) = bT Z (fun u : X => f u >>= g) x.
 Proof.
 unfold T, bT; intros; autorewrite with mod.
@@ -27,7 +29,7 @@ apply mbind_congr. reflexivity.
 intros. destruct a; simpl; monad.
 Qed.
 
-Remark unit_bT : forall (X : Set) (x : T X),
+Remark unit_bT : forall X (x : T X),
   bT X (unit P (X:=X)) x = x.
 Proof.
 unfold T, bT; intros; autorewrite with mod.
@@ -43,7 +45,7 @@ Section Inc.
 
 Let i X (x : M X) : Derived_Mod X := x >>>- @Some X.
 
-Remark i_hom : forall (X Y : Set) (f : X -> P Y) (x : M X),
+Remark i_hom : forall X Y (f : X -> P Y) (x : M X),
   i Y (x >>>= f) = mbind Derived_Mod _ f (i X x).
 Proof.
 unfold i; simpl; mod.
@@ -76,16 +78,3 @@ Record ExpMonad_Hom (M N : ExpMonad) : Type := {
   expmonad_hom_abs : forall X (x : Derived_Mod M X),
     expmonad_hom _ (exp_abs M _ x) = exp_abs N _ (expmonad_hom _ x)
 }.
-
-Lemma expmonad_hom_extens : forall (M N : ExpMonad)
-  (f g : ExpMonad_Hom M N),
-  (forall X x, f X x = g X x) -> f = g.
-Proof.
-destruct f as [f f_app f_abs]. destruct g as [g g_app g_abs].
-simpl. intros.
-assert (f = g). apply monad_hom_extens. apply H.
-subst g. replace g_app with f_app. replace g_abs with f_abs.
-reflexivity.
-apply proof_irrelevance.
-apply proof_irrelevance.
-Qed.

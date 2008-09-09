@@ -3,9 +3,10 @@ Modules over monads and lambda-calculi
 
 Content of the distribution:
 
-lam.pdf        : A paper on the subject: read it together with the code.
-Misc.v, Quot.v : Support libraries.
-Monad.v, Mod.v : Theory of monads and modules over a monad.
-Slc.v, Lc.v    : Theory of Simple Lambda Calculus (syntax, semantic).
-Derived_Mod.v  : Derived modules.
-Lc_exp.v       : The main theorem.
+Misc.v           : Miscellanea
+Quot.v           : Axiomatic definition of quotient types.
+Extensionality.v : Axiom of extensionality.
+Monad.v, Mod.v   : Theory of monads and modules over a monad.
+Slc.v, Lc.v      : Theory of Simple Lambda Calculus (syntax, semantic).
+Derived_Mod.v    : Derived modules.
+Lc_exp.v         : The main theorem.
