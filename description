@@ -20,3 +20,4 @@ Description: We define a notion of module over a monad and use it to
 Url: http://www.math.unifi.it/~/maggesi/mechanized/
 Licence: LGPL
 Keywords: Module, Monad, Category, Lambda-calculus, Higher-order syntax
+Category: Computer Science/Lambda Calculi
