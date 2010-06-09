@@ -167,7 +167,7 @@ Hypothesis Hf : forall x y z w,
 
 Let h  (x : X) : Y // rY -> Z // rZ.
 Proof.
-intro. apply (factor1 rY rZ (f x)). abstract auto.
+apply (factor1 rY rZ (f x)). abstract auto.
 Defined.
 
 Remark rmk : forall x y, rX x y -> h x = h y.
