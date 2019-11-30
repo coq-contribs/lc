@@ -15,7 +15,7 @@ Implicit Type X Y Z : Set.
 
 Let r X : Eqv (term X) :=
   Build_Eqv (@lcr X) (@lcr_rfl X) (@lcr_sym X) (@lcr_trs X).
-Implicit Arguments r [X].
+Arguments r [X].
 
 Definition lc : Set -> Set := fun X => term X // r.
 

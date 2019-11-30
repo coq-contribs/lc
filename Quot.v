@@ -33,13 +33,13 @@ Hint Resolve eq_eqv.
 (** ** Quotients *)
 
 Parameter quotient : forall (X : Set) (r : Eqv X), Set.
-Implicit Arguments quotient [].
+Arguments quotient : clear implicits.
 Infix "//" := quotient
   (at level 45, right associativity) : quotient.
 Open Scope quotient.
 
 Parameter class : forall (X : Set) (r : Eqv X), X -> X//r.
-Implicit Arguments class [X].
+Arguments class [X].
 Notation "x / r" := (class r x) : quotient.
 
 Axiom class_eq : forall (X : Set) (r : Eqv X) (x y : X),
@@ -56,7 +56,7 @@ Axiom class_ind : forall (X : Set) (r : Eqv X) (P : X // r -> Prop),
 Parameter factor : forall (X : Set) (r : Eqv X) Y (f : X -> Y)
   (Hf : forall x y, r x y -> f x = f y),
   X//r -> Y.
-Implicit Arguments factor [X Y].
+Arguments factor [X] r [Y].
 
 Axiom factorize : forall (X : Set) (r : Eqv X) (Y : Set) (f : X -> Y)
   (H : forall x y, r x y -> f x = f y),
@@ -143,8 +143,8 @@ Qed.
 
 End Factor1.
 
-Implicit Arguments factor1 [X Y].
-Implicit Arguments factorize1 [X Y].
+Arguments factor1 [X] _ [Y].
+Arguments factorize1 [X] _ [Y].
 Hint Rewrite factorize1 : quotient.
 
 Lemma factor1_extens : forall X (rX : Eqv X) Y (rY : Eqv Y) (f g : X -> Y)
@@ -200,8 +200,8 @@ Qed.
 
 End Factor2.
 
-Implicit Arguments factor2 [X Y Z].
-Implicit Arguments factorize2 [X Y Z].
+Arguments factor2 [X] _ [Y] _ [Z].
+Arguments factorize2 [X] _ [Y] _ [Z].
 
 Hint Rewrite factorize2 : quotient.
 
